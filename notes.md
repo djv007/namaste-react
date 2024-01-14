@@ -6,7 +6,7 @@ Main job of all js libraries and frameworks is to optimise the most costly opera
 React does so by using js functions like createElement() directly which are available in browsers as browsers have js engine.
 
 const heading = React.createElement(“h1” , {} , “hello world!”); 
-console.log(heading); // object (This returns an object not a html element)
+console.log(heading); // object (This returns an object not a html element) - VVVI
 const root = ReactDOM.createRoot(document.getElementById(“root”));
 
 root.render(heading); 
@@ -63,5 +63,52 @@ warning: in the working copy of 'package.json', LF will be replaced by CRLF the 
 
 
 ## episode 3 : laying the foundation
+  babel documentation read
+  explore jsx how to use img and href and a tag
 
-1 .    
+1 . In package.json -> add 2 scripts : start : "parcel index.html" // run in dev mode
+    and build : "parcel build index.html"  // run in prod mode
+start keyword reserved by npm so : npm run start and npm start are same commands 
+2 . React and jsx are different : jsx is for the ease of developers 
+3 . JSX is not html , it is html like syntax
+4 . javascript is a code that browser's js engine understand , now jsx can't be understood by js engine , 
+    js engine understands          ecmascript 6 . So , parcel is transpiling (converted to a form that browser can understand) the code so that browser can understand.
+    Babel : is a js compiler or a transpiler that converts the code from 1 form to another
+    parcel gives the responsibility to transpile the code to Babel - babel's job is to transpile jsx code to what browser can understand
+5 . jsx is converted to react.createElement() form by babel 
+    JSX => React.createElement() => ReactElement(JS-object) => HTML element(remder)
+6 . Attributes in jsx are given in camelCase like tabIndex instead of tabindex 
+7 . enclose jsx in () if writing in multiple lines 
+8 . React components : 2 types - 
+    8.1 Class based components : old
+    8.2 Functional components : new
+    React functional component : is just a normal js function that returns jsx(or react element as jsx and react element are same)
+    name start of a react comp with a capital letter to tell react that it is a react component.
+9 . COMPONENT COMPOSITION : The process to render a component inside another component .
+    for ex in App.js we have a func comp Title like 
+       const Title = () => <div id = "title">I am title</div>
+
+       const HeadingComponent = () => {
+        <div id = "container">
+        <Title/>
+        <h1 className="heading">I am heading</h1>
+        </div>
+       }
+
+       
+        <Title/>  
+        <Title></Title>
+        {Title()}
+
+        above 3 are same 
+
+       we were rendering react elements liek this till now : root.render(header); where header is a react element
+       to render react func comp we will do : root.render(<HeadingComponent/>);
+10 .   To write js in jsx just write {} so inside {} we can write js 
+11 . If we have to put a react element inside a react comp , we can use {} as a react element is a js variable , 
+     so we can put it like a js variable
+12 . suppose we are executing some js data in jsx like {data} , data is coming from api and is malicious , so jsx will
+     sanitise data and then will execute it preventing cross origin attacks 
+13 . 
+
+
