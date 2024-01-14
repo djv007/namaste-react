@@ -95,7 +95,7 @@ start keyword reserved by npm so : npm run start and npm start are same commands
         </div>
        }
 
-       
+
         <Title/>  
         <Title></Title>
         {Title()}
@@ -109,6 +109,25 @@ start keyword reserved by npm so : npm run start and npm start are same commands
      so we can put it like a js variable
 12 . suppose we are executing some js data in jsx like {data} , data is coming from api and is malicious , so jsx will
      sanitise data and then will execute it preventing cross origin attacks 
-13 . 
+
+
+
+## episode 04 : Code in react 
+
+1 . How to think about building an app like a food ordering app we will build 
+    we build a wireframe 
+2 . first half we coded with hardcoded data
+3 . then we have dynamic data 
+4 . passing a prop to a comp is same as passing an arg to a func 
+5 . config-driven UI : webiste is driven by data - controlling the UI using config(coming from backend)
+    liek delhi , mumbai , chennai me alag alag card carousel hoga cards ka swiggy website pe 
+see swiggy's api call how data is coming on homepage - helpful in system design 
+6 . Always give key(reserved keyword) as id in elements whenever using map to loop (never use loop index as keys)
+    : so that react can recognise each loop lement uniquely and hence re-render only newly added or modified elements not 
+    other elements improving performance
+7 . See how we have src attribute in img tag as images are stored in a cloud on swiggy used that url and then each restaurant 
+    has imageId of it , so using that as well .
+8 . Also , see how we have de-structured data from props in res card comp.
+9 . 
 
 
