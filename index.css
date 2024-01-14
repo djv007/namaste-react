@@ -41,7 +41,7 @@
     margin: 5px;
     padding: 5px;
     width: 200px;
-    /* background-color: #f0f0f0; */
+    background-color: #f0f0f0;
 }
 
 .res-card:hover {
@@ -51,4 +51,8 @@
 
 .res-logo {
     width: 190px;
+}
+
+.filter {
+    margin: 5px;
 }

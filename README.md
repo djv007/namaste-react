@@ -18,4 +18,27 @@ doing the following :
 14 . error handling 
 15 . https also we cana host our app there 
 16 . tree shaking  -> remove unused code for you like some funcs 
-17 . 
+
+
+# restaurant website
+
+/*
+    app
+     -> header
+        : logo
+        : nav-items
+            : home
+            : about us
+            : contact us 
+            : cart
+     -> body
+        : search
+        : res card
+            : Res-image
+            : res name 
+            : rating , time , cuisine
+     -> footer
+        : copyright
+        : links
+
+*/

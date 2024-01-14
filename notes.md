@@ -128,6 +128,46 @@ see swiggy's api call how data is coming on homepage - helpful in system design
 7 . See how we have src attribute in img tag as images are stored in a cloud on swiggy used that url and then each restaurant 
     has imageId of it , so using that as well .
 8 . Also , see how we have de-structured data from props in res card comp.
-9 . 
 
+
+## episode 05 : hooks
+
+1 . react files structure - read about it online what's good practices - don't overthink about folder structure
+2 . 3 extensions : .js , .jsx , .tsx : doesn't matter , we will use .js 
+3 . while importing no need of file extension automatic assumed h js file hi hogi - some people use .js , .jsx or .tsx extension 
+    although.
+4 . Never put hard coded data into components folder like we have resData and img CDN url , also in header.js -> img src string
+    put in separate file , inside utils folder or common 
+5 . 2 types of imports/exports :
+    5.1 default : only 1 per file -> imported without {}
+    export default Component;
+    import Component from "path";
+
+    5.2 named : can be multiple -> imported using {}
+    export const Component;
+    import {Component} from "path";
+6 . Feature : create a button - on click of it we only show restaurats which are top rated (rating > 4.0)
+    If we just use a let variable to store array of res. and try to call a func. on button click which updates the res. array
+    then react comp won't be re-rendered.
+    So, we use state variable here 
+    
+    HOOK : is a normal js utility function that has some superpowers(logic) by react.
+    - MI hooks : useState() and useEffect()
+
+7 . whenever a state variabel chnages - react will re-render will comp.
+8 . Reconciliation algo (React fiber) : came in react 16:  react uses this algo.
+    Virtual DOM : is not actual DOM , is representation of actual DOM 
+    like whenever we create an elemnt in react then we get a js object . this is called virtual DOM
+    Diff algo : whenever any data changes in DOM like in res-container any res changes inside it , then diff algo will find difference 
+    between previous virtual dom and new virtual dom and then actually update the DOM in every render cycle.
+
+Q : why react is fast ?
+A : as react does fast DOM manipulations as it uses virtual DOM 
+    virtual DOM : old concept , but react created a diff algo to find difference between previous and current virtual DOMs
+
+in useState we are doing array destructuring on the fly 
+ const [listOfRes, setListOfRes] = useState(resList);
+ // above line and below 2 lines are same
+ const arr = useState(resList);
+ const [listOfRes, setListOfRes] = arr;
 
