@@ -1,4 +1,6 @@
 ## Episode 1 (The Inception) : 
+React fiber : is the new reconcialition algo of react that finds difference between previous and current virtual DOMS
+virtual DOM : object representation of our JSX
 
 Inception : 
 
@@ -17,7 +19,11 @@ We do root.render(heading);
 
 4 . we can use react library in existing apps as it only renders in the element we speicfy iske upar neeche kuch bhi ho skta h aur 
 
-5 . create a repo on github abd follow steps to push the code in local to git repo
+5 . create a repo on github and follow steps to push the code in local to git repo
+
+In development mode, we can enable and utilize React developer tools, devtools profiler, debugging environment attached with source code. We can utilize various functionalities such as Hot Module Replacement, diagnostics so that development environment will help to debug code.
+
+In production mode, compression and minification of Javascript and other resources happens to reduce size of the code which is not the case when it comes to development mode. Performance will be much faster in production mode when compared to development mode.
 
 
 
@@ -170,4 +176,73 @@ in useState we are doing array destructuring on the fly
  // above line and below 2 lines are same
  const arr = useState(resList);
  const [listOfRes, setListOfRes] = arr;
+
+
+
+ ### Episode 06 : exploring the world
+ 1 . Monolith architecture : earlier web apps developed using this 
+     In same project : API , UI , auth code , db connection code 
+     even if we do 1 change - we need to build whole proj again
+ 2 . Micro-services architecture : we have different services for different jobs
+     separate services : UI , api , db , email notification etc
+     Separation of concern and 
+     Single responsibility principle 
+     All services talk to each other : we can write each micro service in different programming language
+     On diff ports we can deploy diff services
+     diff domains like : /api , /sms, 
+ 3 . How to get data from backend?
+     2 ways :
+     3.1 : as soon as app loads , call the api , get the data (take some time like 2 secs wait), then render the UI
+     3.2 : as soon as page loads , just render UI  , then make api call and get data , then re-render the UI
+     we will always be using 2nd approach in React : Its better , giving better UX 
+     as first appraoch we don't see anything till 2 secs but 
+     in second approach we render skeleton first then call API then again re-render UI
+     As react render cycles are fast , so 2 renders are fine , so we will follow 2nd approach 
+4 . useEffect hook : takes 2 args callback func and a dependency array 
+    this cb func is called after the render cycle is complete(after comp is rendered)
+    If you have to do something after the comp is rendered , the use useEffect()
+5 . we tried to call swiggy api from our local , pasted the swiggy api url 
+    got CORS error : this error is given by our browser , as it prevents us call anything from different origin
+    (localhost to swiggy's origin)
+    we can bypass this CORS 
+    download cors chrome extension 
+6 . Shimmer UI : before data comes from API , we show dummy UI - Always load a shimmer UI
+7 . useState hook in depth : 
+    if we chnage a state variable , then it will re-render(call again the function) the functional component 
+    so return ke upar bhi jo likhenge vo execute hoga firse , but in DOM only that node gets changed where data is changed
+    due to smart diff algo react fiber and reconcialiation
+    diff algo will compare virtual DOMs and will find only button is changed so only it will get updated
+    Q. Even though its const here , const [res,setRes] = useState([]);
+       we can change state variable how , is it not violating js concepts?
+    A.  when state variabel is chnaged then , re-render ke time a new copy of state variable gets created and hence in that new copy updated value of state variable gets passed through setRes() as its a new copy so const se problem nahi 
+
+8 . we want to add a search bar (input field) with a search button so that if user types something then we search that res.
+    here in input tag if we set value attribute to a state variable then if we type something in search bar it will not be reflected
+    as our value is tied to state variable 
+    so we add onChange event and in this we call setRes() to update the state variable passed in value attribute
+9 .  now if we type something in search bar for each character typed or removed , comp will get rendered each time 
+   - this is mind blowing that react is so fast rendering components so many times very fast 
+    Although react is re-rendering the whole comp , in DOM it's just updating the input text value as that is chnaged only in DOM
+    As DOM manipulation is expensive react does it very fast by its reconciliation algo
+10 . React fiber : is the new reconcialition algo of react that finds difference between previous and current virtual DOMS
+     virtual DOM : object representation of our JSX
+11 . While filtering we faced a bug , ki ek baar filter kiya restaurants ko fir dobara firse textbox me kuch likhoge to vo 
+     filtered res me se krega filter na ki total res the jo unme se orginally 
+     as we are changing lisOfRes state variable on each time search button is clicked 
+     Soln : create a separate state variable for filteredRes and use it to render all res. cards 
+     also assign this new variable a value when callign API in fetchData()
+     also now use original list of res in lisOfRes variable to filter data  (see code)
+
+
+### Episode 6.2 : CORS issue
+1 . we can use swiggy live API without installing CORS plugin in chrome 
+    by appending a string in each url in fetchData() , 
+    we can google CORS bypass and get it 
+    free version has a limit of 40 calls/minute 
+
+### Episode 7 . Finding the path
+1 . 
+
+
+
 
