@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import RestaurantCard from './RestaurantCard';
 import resList  from '../utils/mockData';
 import Shimmer from './Shimmer';
+import { Link } from 'react-router-dom';
 
 
 
@@ -59,7 +60,10 @@ const Body = () => {
             <div className='res-container'>
                 {
                     filteredListOfRes.map((restaurant) => (
-                        <RestaurantCard key={restaurant.info.id} resData = {restaurant} />
+                        <Link to = {"restaurant/" + restaurant.info.id} 
+                        key={restaurant.info.id} >
+                            <RestaurantCard resData = {restaurant} />
+                        </Link>
                     ))
                 }
 

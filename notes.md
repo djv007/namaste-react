@@ -241,7 +241,41 @@ in useState we are doing array destructuring on the fly
     free version has a limit of 40 calls/minute 
 
 ### Episode 7 . Finding the path
-1 . 
+1 . useEffect : 
+    no dependency array : called everytime comp is rendered
+    empty dep arr : called once on initial mount/render of comp(just once)
+    if dep array has something : called om change of these reactive variables
+2 . useState() : 
+        Good practices : 
+            never call outside a func comp as it's used to create a local state variable in a func comp and calling it outside 
+            will defeat useState hook's purpose
+    # call it in start of func comp
+    # Never create useState hook inside a if-else cond. - will create inconsistencies in different renders 
+    # never create useState inside a function/loop
+
+3 . Routing : 
+    react router dom : library we will use
+    install it : npm i react-router-dom
+    # createBrowserRouter : in app.js import from this library for configuring routes ki kis url pe kaunsa comp load ho
+    # provide this config. created using 
+    RouterProvider : to write this : root.render(<RouterProvider router={appRouter}/>);
+ 
+    # react router dom gives us an imp hook 
+      useRouteError : to provide some extra inf about an error in react 
+    # children[]  : we will use it if we want header comp always and below it about us , contact or all pages to load 
+    Outlet : imported from react-router-dom (like router-outlet in angular)
+    we will add outlet in app.js jsx : and this outlet will be filled with children whenever we change the path 
+    # Never use <a href = "/about"> tag for routing as it will reload the whole page (in this case header comp will also be reloaded
+    but it's already there)
+    Use react's 
+    Link component instead : works exactly same as <anchor> tag in browser DOM link jaha use kara h vaha <a> tag hi hoga 
+    but Link react router dom ne ese bnaya ki page refresh nahi hota 
+4 . Types of routing in web apps :
+    1 . client side routing : no network call making the app SPA
+    2 . server side routing : server se html aata hai (we make a network call when we load about us suppose)
+
+5 . We will use Dynamic routing now : 
+    when we click any res card : we should open its page 
 
 
 
