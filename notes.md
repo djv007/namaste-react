@@ -385,3 +385,26 @@ instead of below :
     after further renders compDidUpdate() is called
 
 
+
+### Episode 09 : Optimising our app
+1 . custom hooks - we will learn
+2 . Single Responsibility principle : Any sinel identity like a func or a class should have 1 resp
+3 . Code more modular , more testable 
+4 . RestaurantMenu.js : has 2 respon now : fetching the data and displaying the menu data
+    we will create a custom hook for fetching the data , and hecne this will have single resp now 
+5 . Create custom hhoks in utils folder > separate file for each hook -> use se start krna to tell react it's a hook
+    it will take resId(getting from params) in ResCard comp and from resId we will get Res. menu in this custom hook
+6 . Feature : Create a custom hook to know if internet is online or offline (used in chat window you know like on fb )
+    In order to write a custom hook : input kya aaega know and return kya krega hook ye 
+    browser gives us window object : this has an event listener online offlien to check onlien status
+7 . Problems with large scale apps : how to make them optimised
+    bundler.js : size increases in big apps 
+    we will make smaller bundles of this file . this process is known as 
+    Chunking / Code splitting / Dynamic bundling / lazy loading / 
+    logical separation of bundles : each bundle has enough code for the feature 
+
+    lazy loading : we are creating a separate vertical for grocery delivery in our app which will be lazily loaded 
+    lazy : is a function given by react , if we use it without suspense we will not be able to see the comp as its async
+    Suspense : is a comp given bre React 
+    
+
