@@ -278,5 +278,110 @@ in useState we are doing array destructuring on the fly
     when we click any res card : we should open its page 
 
 
+### Episode 08 : Let's get classy
+1 . Class based components :
+    Older way to write code 
+2 . class based comp : it's a normal javascript class.
+    to make a js class a class based comp , we extend from React.Component
+    # we have a render() : return JSX 
+
+3 . To pass props in CBC : we use contructor and call super()
+    constructur(props) {
+        super(props);
+        console.log(props);
+    }
+
+    and to access props in CBC : we use this.props 
+    Q : Why we write super(props) always ?
+    A : 
+
+4 . How to Create state variable in CBC : 
+    Loading a CBC means we are creating an isntance of the class
+    state : is a reserved word in CBC 
+    we create a state variable in CBC inside constructor
+5 . NEVER UPDATE STATE variables directly in CBC like this.state.count = this.state.count + 1; never do this
+    Do using : this.setState(
+        count : this.state.count + 1,
+        count2: this.state.count2 + 1
+    ) : can be used anywhere in the class and we can club 2 state variables updates together
+    Suppose our CBC has 4 state variables 
+    and if we update only 2 out of them using setState() then other 2 state variables will not be changed
+
+6 . CBC lifecyles hooks : 
+    How a CBC is mounted(loaded) on webpage 
+    1 . whenever a  CBC is mounted/rendered : 1st constructor then render() is called
+    2 . some people destructures Component from React and write differently like :
+        import {Component} from 'React';
+        class About extends Component {}
+
+instead of below :
+        import React from 'React';
+        class About extends React.Component {}
+
+
+    3 . ComponentDidMount() {}
+    order -> child conttsructor() , render() , ComponentDidMount() of child
+
+    if ComponentDidMount() is in parent also like About class which is calling the child class UserClass CBC then 
+    order of execution is different : imp. interview question :
+    Parent Contructur , parent render , Child cons , child render , child ComponentDidMount , parent ComponentDidMount
+
+    As parent ke JSX me hi to child component likhte h hum , to parent to poora mount tab tak nahi hoga jab tak vo children ko mount na krde apne isiliye parent ComponentDidMount last me call hoga 
+
+    4 . ComponentDidMount() very IMP. usecase is to call APIs
+      Why we do so?
+      A . As YK we first render the comp then call API then again render the comp. with API's data 
+      So that comp is rendered and doesn't wait for API to get the data 
+
+    5 . React lifecycle diagrams : note the website 
+    Supppose About CBC is calling user CBC twice then order of excution of methods changes like this : 
+
+    Parent constructor
+    Parent render
+
+        Child1 constructor
+        Child1 render
+        Child2 constrcutor
+        Child2 render
+
+        Child1 compDidMount
+        Child2 CompDidMount
+    Parent CompDidMount
+
+    Here , React is optimising things 
+    as there are 2 phases :
+    1 . Render phase : (calling contruc, render)
+    2 . Commit phase : (calling CompDidMount() of children)
+
+    So, React is batching render phase for multiple children
+
+    Render phase is very fast but commit phase takes timr 
+    In render phase react reconcialition algo is running comparing virtual doms which are js objects so we are batching render phases
+    of children 
+    So that we need not to update DOM again and again as DOM manipulation is heavy .
+
+    In COmmit phase : we start updtaing the DOM as in render phase whic happens prior we have decied hwo to update the DOM 
+    finally as all children render phases were batched 
+
+6 . How to make API calls in CBC : 
+    # Create a state variable(which will be an obj)
+    # call githib user api and setState variable to the data we receive
+    # in render() use state variable to display data 
+
+     (refer to diagram) : 
+    In Mounting phase : Comp is rendered with dummy data 
+    In Updating phase : when any state variable is chnaged comp is rendered with the data it receives
+    ComponentDidUpdate() is called when any state variable is chnaged and comp is rendered again 
+    In Unmounting phase : 
+    ComponentWillUnmount() will be called just before we unmount the comp by clciking somewhere else 
+    ComponentWillUnmount() : to do clean up like if componentDidMount() me koi setInterval() hai to 
+    jitni baar hum aaenge is comp me ye render hoga utni baar new setInterval will be created each time 
+    so we have to clear interval in componentWillUnmount()
+
+    Disclaimer : 
+    NEVER compare react lifecycle methods with func components hooks
+    Mount , Update , Unmount different hai CBC me 
+    first mount of comp pe compDidMount() called
+    after further renders compDidUpdate() is called
 
 

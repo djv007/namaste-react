@@ -42,3 +42,35 @@ doing the following :
         : links
 
 */
+
+
+order of execution : 
+About
+    UserClass
+        NestedClass
+    Userclass
+        NestedClass
+
+Here ABout : parent class calling UserClass(child class) which is calling NestedClass(nested comp)
+Order of execution : 
+Parent constructor
+About.js:16 Parent render
+UserClass.js:7 FirstChild constructor
+UserClass.js:22 FirstChild render
+NestedClass.js:6 Nested child Constrcutor
+NestedClass.js:14 Nested child render
+UserClass.js:7 SecondChild constructor
+UserClass.js:22 SecondChild render
+NestedClass.js:6 Nested child Constrcutor
+NestedClass.js:14 Nested child render
+UserClass.js:7 ThirdChild constructor
+UserClass.js:22 ThirdChild render
+NestedClass.js:6 Nested child Constrcutor
+NestedClass.js:14 Nested child render
+NestedClass.js:10 Nested child CompDidMount
+UserClass.js:18 FirstChild ComponentDidMount
+NestedClass.js:10 Nested child CompDidMount
+UserClass.js:18 SecondChild ComponentDidMount
+NestedClass.js:10 Nested child CompDidMount
+UserClass.js:18 ThirdChild ComponentDidMount
+About.js:12 Parent ComponentDidMount
