@@ -406,5 +406,51 @@ instead of below :
     lazy loading : we are creating a separate vertical for grocery delivery in our app which will be lazily loaded 
     lazy : is a function given by react , if we use it without suspense we will not be able to see the comp as its async
     Suspense : is a comp given bre React 
-    
+
+
+### Episode 10 : jo dikhta hai vo bikta hai 
+  1 . Multiple ways to add css
+    a . normal css
+    b . saas/scss : with some super powers : not used in prod ready apps - not recommended
+    c . styled components : big companies use this way  styled-components.com
+    d . material UI , chakra ui , bootstarp : ways to style app
+    material UI : has inbuilt comp like Button
+    e . ant-design
+
+    tailwind css : is session me hoga
+
+    Tailwind CSS : Rapidly build webistes without leaving HTML 
+    go to Tailwind webiste as we are using parcel click on "COnfigurayions" then "Parcel" and follow the steps
+    .postcssrc : is used by Parcel to understand tailwinds
+
+    install Tailwind css extension in vs code - wil give suggestions
+    Tailwind has initial learning curve but it's good
+
+    # to give exact hard coded values use [] like 
+    className = 'p-4 m-4 w-[200px]' will give 200 px hard coded width
+
+    Dark mode ke liye use : dark : 
+
+    ################# BUG IN Tailwind extension : Sometimes it doesn't give suggestions , then use ctl + space bar key 
+
+    CONS of TAIlwind CSS : 
+    1 . initial high learning curve
+    2 . Code looks less readable .If styles are very specific , then a lot of css is needed - although tailwind provides built in elements
+
+    PROS : 
+    1 . Tailwind is very light weight . Our bundler parcel will only import those classes from tailwind which are used in our app .
+         classes are like margin , padding etc
+    ex : even if we are using m-4 100 times in our project, we will have that only 1 time in code
+    2 . 
+
+
+
+
+### Episode 11 : Data is the new oil : 
+    1 . 
+
+
+
+
+
 
