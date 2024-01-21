@@ -491,8 +491,83 @@ instead of below :
 
       
 
+### Episode 12 : Let's build our store : 
+
+1 . Redux is not necessary in any web app from scratch , baadme bhi kr skte h 
+2 . If in UI , lot of read/write operations , data transfer 
+between comp. then use redux.
+3 . zustand is another library for state mngmt like redux
+4 . Redux offers easy debugging using redux dev tools like we have react dev tools.
+5 . 2 libraries offered by redux : React-Redux and Redux Toolkit
+6 . redux toolkit : latest way to write redux is using Redux toolkit
+7 . Redux toolkit : webiste has 2 libraries : 
+    React , React-redux . We will use react-redux
+8 . Redux toolkit solves these 3 probs of redux : 
+The Redux Toolkit package is intended to be the standard way to write Redux logic. It was originally created to help address three common concerns about Redux:
+
+"Configuring a Redux store is too complicated"
+"I have to add a lot of packages to get Redux to do anything useful"
+"Redux requires too much boilerplate code"
+
+9 . RTK (Redux Toolkit) Architecture : 
+    RTK store is a big object kept at central place
+    we have slices : parts of our store
+    we create multiple slices
+    userSlice , themeSlice , cartSlice : we will make 
+    logical separations when creating a slice
+
+    # write data to store :  add clicked -> dispatch an action -> calls a func.
+    -> func. modifies the cartSlice(updates the slice of our RTK store)
+    func. :  here is called Reducer
+
+    # read data from store : 
+      we use a selector -> to read data from store -> then will use this data to modify our comp.(like increae count of items in cart)
+      This process is called subscribing to the store
+      Header comp. is subscribed to the store (as soon as store chnages header comp changes)
+
+10 . Install @reduxjs/toolkit and react-redux
+11 . build our store
+     connect store to app
+     create a cartSlice
+     dispatch action
+     read data using selector
 
 
+ // selector is a hook in react
 
+ in selector : only subscribe to right portion of store else performance issue hoga 
+
+      // in vanilla redux or old version of redux we can't mutate the state
+            // we have to do like : 
+            // const newState = {...state};
+            // newState.items.push(action.payload);
+            // return newState
+    
+   ######## React uses Immer library to find the difference between new state and current state in RTK
+  
+10 . Feature that we will develop : 
+    # Build a cart 
+    # If we click on Add button on any food item it should go in the cart
+    # we will create a cart comp.
+
+
+  IN RTK : we have to mutate the state 
+  in reducer func we can't do 
+  state = ["dhananjay];
+  as it will chnage value of this local variable as
+  "state" is local variable here 
+
+  //  console.log(state); won't give anything
+          //  console.log(current(state)); use this
+
+// to make API call : 
+earlier we used to have thunk and middleware 
+and now we have RTK query (read about it )
+
+    Redux dev tools
+
+
+### Episode 13 : Testing the app
+1 .  
 
 

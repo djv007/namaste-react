@@ -8,6 +8,11 @@ import Contact from './components/Contact';
 import Error from './components/Error';
 import ResInfo from './components/ResInfo';
 import UserContext from "./utils/UserContext";
+// this provider is a bridge between react and redux so coming 
+// from this librarry react-redux
+import { Provider } from 'react-redux';
+import appstore from './utils/appStore';
+import Cart from './components/Cart';
 
 const Grocery = lazy(()=> import('./components/Grocery'));
 
@@ -24,12 +29,14 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
     return (
+      <Provider store={appstore}>
      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
         <div className="app">
           <Header />
           <Outlet />
         </div>
       </UserContext.Provider>
+       </Provider>
     )
 }
 
@@ -54,6 +61,10 @@ const appRouter = createBrowserRouter([
                 path: "/restaurant/:resId",
                 element: <ResInfo/>
             },
+            {
+              path: "/cart",
+              element: <Cart/>
+          },
             {
                 path: "/grocery",
                 element: <Suspense fallback={<h1>Loading...</h1>}><Grocery/></Suspense>
