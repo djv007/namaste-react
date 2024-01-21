@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ReactDOM from 'react-dom/client';
-import RestaurantCard from './RestaurantCard';
+import RestaurantCard ,  { withPromotedLabel } from './RestaurantCard';
 import resList  from '../utils/mockData';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import UserContext from '../utils/UserContext';
 
 
 
@@ -12,6 +13,10 @@ const Body = () => {
     const [listOfRes, setListOfRes] = useState([]);
     const [filteredListOfRes, setFilteredListOfRes] = useState([]);
     const [searchText, setSearchText] = useState("");
+
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+    console.log("body" , listOfRes);
+
     useEffect(() => {
       fetchData();
     }, []);
@@ -34,6 +39,7 @@ const Body = () => {
     if(onlineStatus === false) {
         return ( <h1>You are offline!</h1>);
     }
+    const { loggedInUser, setUserName } = useContext(UserContext);
     return filteredListOfRes.length === 0 ? <Shimmer/>: (
         <div className="body">
             <div className="filter flex">
@@ -66,6 +72,15 @@ const Body = () => {
 
                 </button>
                 </div>
+
+                <div className="search m-4 p-4 flex items-center">
+                    <label>UserName : </label>
+                    <input
+                        className="border border-black p-2"
+                        value={loggedInUser}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </div>
                 
             </div>
             <div className='flex flex-wrap'>
@@ -73,7 +88,16 @@ const Body = () => {
                     filteredListOfRes.map((restaurant) => (
                         <Link to = {"restaurant/" + restaurant.info.id} 
                         key={restaurant.info.id} >
-                            <RestaurantCard resData = {restaurant} />
+                            {/* if res is promoted then add HOC */}
+                            {
+                                restaurant.info?.aggregatedDiscountInfoV3?.header ?(
+                                <RestaurantCardPromoted resData = {restaurant}/>
+                                )
+                                : (
+                                <RestaurantCard resData = {restaurant} />
+                                )
+                            }
+                            
                         </Link>
                     ))
                 }

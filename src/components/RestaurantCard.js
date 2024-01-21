@@ -1,10 +1,12 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import ReactDOM from 'react-dom/client';
 import { CDN_URL } from "../utils/constants";
+import UserContext from '../utils/UserContext';
 
 
 const RestaurantCard = (props) => {
     const {info} = props.resData;
+    const { loggedInUser } = useContext(UserContext);
     const {cloudinaryImageId,name, locality, cuisines, costForTwo,avgRating } = info;
     const {deliveryTime} = info.sla;
     return (
@@ -20,8 +22,28 @@ const RestaurantCard = (props) => {
             <h5>{avgRating} star</h5>
             <h5>{costForTwo}</h5>
             <h5>{deliveryTime} minutes</h5>
+            <h4>User : {loggedInUser} </h4>
         </div>
     )
-}
+};
+
+// HOC  is a function which
+// takes a comp as input and retuns a comp
+export const withPromotedLabel = (RestaurantCard) => {
+    return (props) => {
+
+        return (
+            <div>
+                {/* <label>Promoted</label> */}
+                <label className='m-2 p-2 rounded-lg absolute bg-black text-white'>
+                    {props?.resData?.info?.aggregatedDiscountInfoV3?.header}
+                </label>
+                <RestaurantCard {...props}/>
+            </div>
+        );
+
+    };
+
+};
 
 export default RestaurantCard;

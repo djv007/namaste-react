@@ -447,7 +447,49 @@ instead of below :
 
 
 ### Episode 11 : Data is the new oil : 
-    1 . 
+    1 . HOC : is a JS function that takes a component adds some logic or enhace it and returns a component.
+    Feature : 
+    1 . On Swiggy's webiste some res cards are promoted (have promoted label on card) : we will build this feature
+    HOC : is a pure func : means isme hum res card comp. pass krre h to usko chnage nahi krenge balki kuch extra add krenge
+    2 . Controlled and Uncontrolled components and lifting the state up
+
+    2 layers : 
+    data layer and UI layer : data layer powers UI layer
+
+    Feature : 
+    menu me sab build krenge abhi sirf recommended hai ab shakes , veg sab scetions krenge
+
+    # window key + .  -> to open emoji keyboard in vs code
+
+    2 types of components : 
+    1 . Controlled components : we can control their display in DOM from other components
+    2 . Non-controlled components : which control other components
+
+    ex : ResInfo is controlling RestaurantCategory component
+
+    # Lifting the state : Sometimes we have to lift the state means state variable ko chnage krne vala function pass krna kisi aur
+    comp. ko 
+    ex : Accordion case : we want other accordions to close if we open 1 accordion . 
+    Here when any accordion head is clicked it calls a function which is calling another function inside it which is changing the 
+    state variable of parent comp of this accordion 
+    accordion : RestaurantCategory
+    parent : ResInfo
+
+    Props drilling : you know : passing props from 1 comp to its child and so on 
+    to solve this : we createContext and use it using useContext hook
+    # If we want to access a context in CBC we use <Context_Name.Provider></Context_Name.Provider>
+    # If we want to chnage the value of context object we created we can use : 
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+
+      we wrapped whole app inside it , jo wrap krenge usme chnages reflect honge 
+      we can have nexted contexts as well to andar vale context me nested context vala chnage hoga (See SS Elon MUsk vala example)
+
+      
 
 
 
